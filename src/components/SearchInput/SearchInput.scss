@@ -1,0 +1,31 @@
+.search-form {
+  border-radius: 10px;
+  padding: 12px 25px;
+  background-color: #e5e5e5;
+  border: 1.5px solid #d6d8e7;
+  color: gray;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  flex-grow: 1;
+  margin: 50px;
+  max-width: 1100px;
+  margin: 10px auto;
+
+  .search-input {
+    background-color: transparent;
+    border: none;
+    color: black;
+    font-size: 16px;
+
+    &:focus-visible {
+      outline: none;
+    }
+    &::placeholder {
+      color: gray;
+    }
+  }
+  .fa-search {
+    font-size: 24px;
+  }
+}

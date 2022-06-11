@@ -2,7 +2,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid gray;
+  border-bottom: 1.5px solid #d6d8e7;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  background-color: white;
 
   .logo {
     height: 100px;
@@ -11,5 +13,21 @@
   .title {
     font-size: 36px;
     color: #5a6f07;
+  }
+  .add-button {
+    cursor: pointer;
+    background-color: #5a6f07;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: 500;
+    border: 1px solid #5a6f07;
+    margin: 10px;
+    margin-right: 30px;
+
+    &:hover {
+      transform: scale(1.05);
+    }
   }
 }
