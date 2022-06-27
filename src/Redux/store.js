@@ -1,5 +1,5 @@
-import { configureStore } from "@reduxjs/toolkit";
-import { employeeReducer } from "./employee";
+import { configureStore } from '@reduxjs/toolkit';
+import { employeeReducer } from './employee';
 
 export default configureStore({
   reducer: {
