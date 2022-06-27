@@ -1,22 +1,18 @@
-import React, { useMemo } from "react";
-import { useSelector } from "react-redux";
-import { usePagination, useTable } from "react-table";
+import React, { useMemo } from 'react';
+import { usePagination, useTable } from 'react-table';
 // import Data from "../../Data/employee_data.json";
-import { columns } from "./Columns";
-import "./TableEmployee.scss";
+import { columns } from './Columns';
+import './TableEmployee.scss';
 
-const TableEmployee = () => {
-  const data = useSelector((state) => state.employee);
-
+const TableEmployee = ({ tableData }) => {
   const tableColumns = useMemo(() => columns, []);
-  const tableData = useMemo(() => [...data.employeeList], []);
 
   const tableInstance = useTable(
     {
       columns: tableColumns,
       data: tableData,
     },
-    usePagination
+    usePagination,
   );
   const {
     getTableProps,
@@ -31,6 +27,7 @@ const TableEmployee = () => {
     gotoPage,
     pageCount,
     setPageSize,
+
     prepareRow,
     state: { pageIndex, pageSize },
   } = tableInstance;
@@ -39,22 +36,22 @@ const TableEmployee = () => {
     <>
       <table {...getTableProps()}>
         <thead>
-          {headerGroups.map((headerGroup) => (
+          {headerGroups.map(headerGroup => (
             <tr {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map((header) => (
-                <th {...header.getHeaderProps()}>{header.render("Header")}</th>
+              {headerGroup.headers.map(header => (
+                <th {...header.getHeaderProps()}>{header.render('Header')}</th>
               ))}
             </tr>
           ))}
         </thead>
         <tbody {...getTableBodyProps()}>
-          {page.map((row) => {
+          {page.map(row => {
             prepareRow(row);
             return (
               <tr {...row.getRowProps()}>
-                {row.cells.map((cell) => {
+                {row.cells.map(cell => {
                   return (
-                    <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
+                    <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
                   );
                 })}
               </tr>
@@ -67,30 +64,29 @@ const TableEmployee = () => {
           <select
             className="page-size"
             value={pageSize}
-            onChange={(e) => setPageSize(Number(e.target.value))}
-          >
-            {[10, 25, 50, 100].map((pageSize) => (
+            onChange={e => setPageSize(Number(e.target.value))}>
+            {[10, 25, 50, 100].map(pageSize => (
               <option key={pageSize} value={pageSize}>
                 show{pageSize}
               </option>
             ))}
           </select>
         </div>
-        <div style={{ display: "flex", flexDirection: "row" }}>
+        <div style={{ display: 'flex', flexDirection: 'row' }}>
           <span>
-            Page {""}
+            Page {''}
             <strong>
               {pageIndex + 1} of {pageOptions.length}
             </strong>
-            {""}
+            {''}
           </span>
           <span>
-            | go to page{""}
+            | go to page{''}
             <input
               className="page-number"
               type="number"
               defaultValue={pageIndex + 1}
-              onChange={(e) => {
+              onChange={e => {
                 const pageNumber = e.target.value
                   ? Number(e.target.value) - 1
                   : 0;
@@ -102,30 +98,26 @@ const TableEmployee = () => {
             <button
               onClick={() => gotoPage(0)}
               disabled={!canPreviousPage}
-              aria-label="go to first page"
-            >
-              {"<<"}
+              aria-label="go to first page">
+              {'<<'}
             </button>
             <button
               onClick={() => previousPage()}
               disabled={!canPreviousPage}
-              aria-label="go to previous page"
-            >
+              aria-label="go to previous page">
               Previous
             </button>
             <button
               onClick={() => nextPage()}
               disabled={!canNextPage}
-              aria-label="go to next page"
-            >
+              aria-label="go to next page">
               Next
             </button>
             <button
               onClick={() => gotoPage(pageCount - 1)}
               disabled={!canNextPage}
-              aria-label="go to last page"
-            >
-              {">>"}
+              aria-label="go to last page">
+              {'>>'}
             </button>
           </div>
         </div>
