@@ -1,7 +1,11 @@
-import React from "react";
-import "./SearchInput.scss";
+import { useAsyncDebounce } from 'react-table';
+import './SearchInput.scss';
 
-const SearchInput = ({ onChange, onSearch }) => {
+const SearchInput = ({ onSearch }) => {
+  const handleChange = useAsyncDebounce(value => {
+    onSearch(value || undefined);
+  }, 500);
+
   return (
     <div className="search-form" aria-labelledby="search input">
       <i className="fas fa-search"></i>
@@ -9,10 +13,7 @@ const SearchInput = ({ onChange, onSearch }) => {
         className="search-input"
         type="search"
         placeholder="Search an employee"
-        onChange={(e) => e.target.value}
-        onKeyDown={(e) =>
-          e.key === "Enter" && onSearch && onSearch(e.currentTarget.value)
-        }
+        onChange={e => handleChange(e.target.value)}
       />
     </div>
   );
