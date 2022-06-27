@@ -1,16 +1,14 @@
-import { createSlice } from "@reduxjs/toolkit";
-import StorageHelper from "../storage";
+import { createSlice } from '@reduxjs/toolkit';
+import StorageHelper from '../storage';
 
 const employee = createSlice({
-  name: "add",
+  name: 'add',
   initialState: {
     employeeList: StorageHelper.getEmployeeList(),
   },
 
   reducers: {
     addEmployee: (state, action) => {
-      console.log(action.payload);
-
       state.employeeList.unshift(action.payload);
       StorageHelper.setEmployeeList(state.employeeList);
     },
