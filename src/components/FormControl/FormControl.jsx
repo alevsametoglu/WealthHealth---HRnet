@@ -1,10 +1,6 @@
-import "./FormControl.scss";
-import Input from "./components/Input";
-
-import { Controller } from "react-hook-form";
-import DatePicker from "./components/DatePicker";
-import Select from "./components/Select";
-import NumberInput from "./components/NumberInput";
+import './FormControl.scss';
+import 'react-datepicker/dist/react-datepicker.css';
+// import ReactDatePicker from 'react-datepicker';
 
 const FormControl = ({
   inputType,
@@ -13,108 +9,93 @@ const FormControl = ({
   style,
   inputStyle,
   placeholder,
-  control,
-  rules,
   options,
   aria,
+  formState,
+  register,
 }) => {
   let formInput;
 
+  const error = formState?.errors?.[name];
   switch (inputType) {
-    case "input":
+    case 'input':
       formInput = (
-        <Controller
-          control={control}
-          name={name}
-          rules={rules}
-          render={({ field, fieldState }) => {
-            return (
-              <Input
-                style={inputStyle}
-                placeholder={placeholder}
-                fieldRenderProps={field}
-                fieldState={fieldState}
-                aria={aria}
-              />
-            );
-          }}
+        <input
+          style={inputStyle}
+          placeholder={placeholder}
+          className={!!error ? 'invalid' : ''}
+          type="text"
+          aria-labelledby={aria}
+          {...register}
+        />
+      );
+      break;
+    case 'number-input':
+      formInput = (
+        <input
+          style={inputStyle}
+          placeholder={placeholder}
+          className={!!error ? 'invalid' : ''}
+          type="number"
+          aria-labelledby={aria}
+          {...register}
         />
       );
       break;
 
-    case "date-picker":
+    case 'date-picker':
       formInput = (
-        <Controller
-          control={control}
-          name={name}
-          rules={rules}
-          render={({ field, fieldState }) => (
-            <DatePicker
-              style={inputStyle}
-              placeholder={placeholder}
-              fieldRenderProps={field}
-              fieldState={fieldState}
-              aria={aria}
-            />
+        <>
+          <input
+            style={inputStyle}
+            placeholder={placeholder}
+            className={!!error ? 'invalid' : ''}
+            type="date"
+            aria-labelledby={aria}
+            {...register}
+          />
+          {/* <ReactDatePicker
+            dateFormat="dd-MM-yyyy"
+            aria-required="true"
+            style={inputStyle}
+            placeholder={placeholder}
+            className={!!error ? 'invalid' : ''}
+            aria-labelledby={aria}
+            autoComplete="off"
+            showYearDropdown
+            // {...register}
+            name={register.name}
+            onBlur={register.onBlur}
+            ref={register.ref}
+            onChangeRaw={e => {
+              // e.target.name = name;
+              register.onChange(e);
+            }}
+          /> */}
+          {error?.message && (
+            <span style={{ color: 'red' }}>{error.message}</span>
           )}
-        />
-      );
-      break;
-    case "number-input":
-      formInput = (
-        <Controller
-          control={control}
-          name={name}
-          rules={rules}
-          render={({ field, fieldState }) => (
-            <NumberInput
-              style={inputStyle}
-              placeholder={placeholder}
-              fieldRenderProps={field}
-              fieldState={fieldState}
-              aria={aria}
-            />
-          )}
-        />
+        </>
       );
       break;
 
-    case "select":
+    case 'select':
       formInput = (
-        <Controller
-          control={control}
-          name={name}
-          rules={rules}
-          render={({ field, fieldState }) => (
-            <Select
-              style={inputStyle}
-              placeholder={placeholder}
-              fieldRenderProps={field}
-              fieldState={fieldState}
-              options={options}
-              aria={aria}
-            />
-          )}
-        />
+        <select
+          style={inputStyle}
+          placeholder={placeholder}
+          className={!!error ? 'invalid' : ''}
+          aria-labelledby={aria}
+          {...register}>
+          {options.map((option, i) => (
+            <option value={option.value} key={i}>
+              {option.label}
+            </option>
+          ))}
+        </select>
       );
       break;
     default:
-      formInput = (
-        <Controller
-          control={control}
-          name={name}
-          rules={rules}
-          render={({ field, fieldState }) => (
-            <Input
-              style={inputStyle}
-              placeholder={placeholder}
-              fieldRenderProps={field}
-              fieldState={fieldState}
-              aria={aria}
-            />
-          )}
-        />
-      );
       break;
   }
 
