@@ -1,7 +1,7 @@
-import React from "react";
-import { CreateForm } from "../components";
+import React from 'react';
+import { CreateForm } from '../components';
 
-import "./HomePage.scss";
+import './HomePage.scss';
 const HomePage = () => {
   return (
     <main className="home-page" aria-label="home page">
