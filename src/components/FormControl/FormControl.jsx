@@ -2,6 +2,10 @@ import './FormControl.scss';
 import 'react-datepicker/dist/react-datepicker.css';
 // import ReactDatePicker from 'react-datepicker';
 
+/**
+ * create form controls
+ */
+
 const FormControl = ({
   inputType,
   label,

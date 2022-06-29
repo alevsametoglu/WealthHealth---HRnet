@@ -1,5 +1,11 @@
 import { useAsyncDebounce } from 'react-table';
 import './SearchInput.scss';
+import PropTypes from 'prop-types';
+/**
+ * @description SearchInput
+ * @param   {function}    props.onSeacrh
+ * @returns {Reactnode}   jsx injected in DOM
+ */
 
 const SearchInput = ({ onSearch }) => {
   const handleChange = useAsyncDebounce(value => {
@@ -20,3 +26,7 @@ const SearchInput = ({ onSearch }) => {
 };
 
 export default SearchInput;
+
+SearchInput.propTypes = {
+  onSeacrh: PropTypes.func.isRequired,
+};

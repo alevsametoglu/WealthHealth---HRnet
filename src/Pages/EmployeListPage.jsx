@@ -1,8 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { SearchInput, TableEmployee } from '../components';
-import { employeeAction } from '../Redux/employee';
 import './EmployeList.scss';
+
+/**
+ * @description render page
+ * @component
+ *
+ * @returns
+ */
 
 const EmployeListPage = () => {
   const employeState = useSelector(state => state.employee);

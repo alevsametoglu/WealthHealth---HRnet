@@ -1,12 +1,19 @@
 import React, { useMemo } from 'react';
 import { usePagination, useTable } from 'react-table';
-// import Data from "../../Data/employee_data.json";
 import { columns } from './Columns';
 import './TableEmployee.scss';
 
-const TableEmployee = ({ tableData }) => {
-  const tableColumns = useMemo(() => columns, []);
+/**
+ * @description component Table employee
+ * @component
+ *
+ * @returns {Reactnode}   jsx injected in DOM
+ */
 
+const TableEmployee = ({ tableData }) => {
+  // useMemo HOOK to avoid re-rendering until the data changes
+  const tableColumns = useMemo(() => columns, []);
+  // Table instance
   const tableInstance = useTable(
     {
       columns: tableColumns,
@@ -14,6 +21,7 @@ const TableEmployee = ({ tableData }) => {
     },
     usePagination,
   );
+  //proprité du table :TABLE PROPS to define table instance
   const {
     getTableProps,
     getTableBodyProps,
@@ -51,7 +59,9 @@ const TableEmployee = ({ tableData }) => {
               <tr {...row.getRowProps()}>
                 {row.cells.map(cell => {
                   return (
-                    <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
+                    <td tabInde="0" {...cell.getCellProps()}>
+                      {cell.render('Cell')}
+                    </td>
                   );
                 })}
               </tr>
@@ -59,9 +69,11 @@ const TableEmployee = ({ tableData }) => {
           })}
         </tbody>
       </table>
+      {/* pagination */}
       <div className="table-pagination">
         <div>
           <select
+            tabIndex="0"
             className="page-size"
             value={pageSize}
             onChange={e => setPageSize(Number(e.target.value))}>

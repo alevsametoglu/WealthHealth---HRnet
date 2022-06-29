@@ -333,6 +333,12 @@ const states = [
   },
 ];
 
+/**
+ * @description création component CreateForm
+ * @component
+ *
+ * @returns {Reactnode}   jsx injected in DOM
+ */
 const CreateForm = () => {
   const [showModal, setShowModal] = useState(false);
 

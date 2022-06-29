@@ -1,6 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 import StorageHelper from '../storage';
 
+/**
+ * create slice  redux
+ */
+
 const employee = createSlice({
   name: 'add',
   initialState: {

@@ -1,6 +1,12 @@
-import React from "react";
-import { Outlet } from "react-router";
-import { Header } from "../components";
+import React from 'react';
+import { Outlet } from 'react-router';
+import { Header } from '../components';
+/**
+ * @description render header and childs
+ * @component
+ *
+ * @returns
+ */
 
 const MainLayout = () => {
   return (

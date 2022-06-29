@@ -1,7 +1,12 @@
-import React from "react";
-import logo from "./logo.png";
-import "./Header.scss";
-import { Link, useLocation } from "react-router-dom";
+import React from 'react';
+import logo from './logo.png';
+import './Header.scss';
+import { Link, useLocation } from 'react-router-dom';
+
+/**
+ * @description Component for showing header
+ * @component
+ */
 
 const Header = () => {
   const location = useLocation();
@@ -12,7 +17,7 @@ const Header = () => {
       <span className="title" aria-label="page title">
         HRNET
       </span>
-      {location.pathname === "/employee-list" ? (
+      {location.pathname === '/employee-list' ? (
         <Link to="/" className="add-button">
           <i className="fa-solid fa-user-plus"></i> <span>Add employee</span>
         </Link>
