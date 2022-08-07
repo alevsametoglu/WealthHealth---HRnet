@@ -42,7 +42,7 @@ const TableEmployee = ({ tableData }) => {
 
   return (
     <>
-      <table {...getTableProps()}>
+      <table className="emloyee-table" {...getTableProps()}>
         <thead>
           {headerGroups.map(headerGroup => (
             <tr {...headerGroup.getHeaderGroupProps()}>
