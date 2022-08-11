@@ -32,6 +32,7 @@ const FormControl = ({
         />
       );
       break;
+
     case 'number-input':
       formInput = (
         <input

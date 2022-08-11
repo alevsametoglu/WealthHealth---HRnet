@@ -35,11 +35,10 @@ const TableEmployee = ({ tableData }) => {
     gotoPage,
     pageCount,
     setPageSize,
-
     prepareRow,
     state: { pageIndex, pageSize },
   } = tableInstance;
-
+  console.log(getTableProps());
   return (
     <>
       <table className="emloyee-table" {...getTableProps()}>
@@ -59,7 +58,7 @@ const TableEmployee = ({ tableData }) => {
               <tr {...row.getRowProps()}>
                 {row.cells.map(cell => {
                   return (
-                    <td tabInde="0" {...cell.getCellProps()}>
+                    <td tabIndex="0" {...cell.getCellProps()}>
                       {cell.render('Cell')}
                     </td>
                   );

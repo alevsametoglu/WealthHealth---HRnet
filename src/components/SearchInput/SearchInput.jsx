@@ -28,5 +28,5 @@ const SearchInput = ({ onSearch }) => {
 export default SearchInput;
 
 SearchInput.propTypes = {
-  onSeacrh: PropTypes.func.isRequired,
+  onSearch: PropTypes.func.isRequired,
 };

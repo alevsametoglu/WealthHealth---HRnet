@@ -344,7 +344,12 @@ const CreateForm = () => {
 
   const dispatch = useDispatch();
 
-  const { handleSubmit, reset, register, formState } = useForm({});
+  const { handleSubmit, reset, register, formState } = useForm({
+    defaultValues: {
+      startDate: null,
+      dateOfBirth: null,
+    },
+  });
   const submitForm = formValue => {
     console.log(formValue);
     const selectedState = states.find(
@@ -375,7 +380,8 @@ const CreateForm = () => {
         }}
         show={showModal}
         title="Succes"
-        text="New employe has been created"></Modal>
+        text="New employe has been created"
+      />
       <form className="create-form" onSubmit={handleSubmit(submitForm)}>
         <div className="form">
           <div className="information">
@@ -468,7 +474,7 @@ const CreateForm = () => {
             <FormControl
               formState={formState}
               name="zipCode"
-              inputType="input"
+              inputType="number-input"
               label="Zip Code"
               aria="zipCode"
               register={register('zipCode', { required: true })}
